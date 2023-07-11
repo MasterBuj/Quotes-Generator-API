@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes Generator API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+  <link rel="stylesheet" href="assets/vendor/coloris/coloris.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <body>
+
+    <main class="flex-center">
+
+      <section class="quote-container">
+        <div class="content" id="content">
+          <h1 class="title" id="title">Quote of the Day</h1>
+          <div class="quote-area">
+            <i class="fas fa-quote-left"></i>
+            <p class="quote">Never give up because you never know if the next try is going to be the one that works.</p>
+            <i class="fas fa-quote-right"></i>
+          </div>
+          <div class="author">
+            <span>__</span>
+            <span class="name">Mary Kay Ash</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="config-cointainer">
+        <div class="configTools">
+          <div class="tools-custom-quotes">
+            <ul class="tools-btn">
+              <li class="newQuote"><i class="fas fa-sync-alt"></i></li>
+              <li class="speech"><i class="fas fa-volume-up"></i></li>
+              <li class="copy"><i class="fas fa-copy"></i></li>
+              <li class="twitter"><i class="fab fa-twitter"></i></li>
+            </ul>
+
+            <div class="input-form">
+              <input type="text" id="title-input">
+            </div>
+
+            <div class="tools-color">
+
+              <div class="input-form circle">
+                <p>Font Color</p>
+                <input type="text" class="coloris font-color" value="#111111">
+              </div>
+
+              <div class="input-form circle">
+                <p>Title Color</p>
+                <input type="text" class="coloris title-color" value="#11131e">
+              </div>
+
+              <div class="input-form circle">
+                <p>Background Color</p>
+                <input type="text" class="coloris bg-color" value="#ffffff">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <script src="assets/vendor/coloris/coloris.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+  </body>
+
+</html>
