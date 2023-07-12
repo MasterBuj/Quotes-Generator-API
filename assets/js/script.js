@@ -1,51 +1,89 @@
+// MARK Global
 const quoteText = document.querySelector(".quote"),
     quoteBtn = document.querySelector(".newQuote"),
-    quoteBtnInner = document.querySelector(".newQuote > i"),
-    authorName = document.querySelector(".name"),
-    speechBtn = document.querySelector(".speech"),
-    copyBtn = document.querySelector(".copy"),
-    twitterBtn = document.querySelector(".twitter"),
-    synth = speechSynthesis;
+    quoteBtnInner = document.querySelector(".newQuote > iconify-icon"),
+    authorName = document.querySelector(".author .name");
 
-
+// MARK Fetch quotes
 quoteBtn.addEventListener("click", () => {
     quoteBtn.classList.add("loading");
-    quoteBtnInner.classList.remove('fas', 'fa-sync-alt')
-    quoteBtnInner.classList.add('fas', 'fa-sync', 'fa-spin')
+    quoteBtnInner.removeAttribute("icon")
+    quoteBtnInner.setAttribute("icon", "eos-icons:arrow-rotate")
     fetch("http://api.quotable.io/random")
         .then(response => response.json())
         .then(result => {
             quoteText.innerText = result.content;
             authorName.innerText = result.author;
             quoteBtn.classList.remove("loading");
-            quoteBtnInner.classList.remove('fas', 'fa-sync', 'fa-spin')
-            quoteBtnInner.classList.add('fas', 'fa-sync-alt')
+            quoteBtnInner.removeAttribute("icon")
+            quoteBtnInner.setAttribute("icon", "dashicons:image-rotate")
         })
 });
 
-
-
-speechBtn.addEventListener("click", () => {
+// MARK Speak quote
+const synth = speechSynthesis,
+    speakBtn = document.querySelector(".speak");
+speakBtn.addEventListener("click", () => {
     if (!quoteBtn.classList.contains("loading")) {
         let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
         synth.speak(utterance);
         setInterval(() => {
-            !synth.speaking ? speechBtn.classList.remove("active") : speechBtn.classList.add("active");
+            !synth.speaking ? speakBtn.classList.remove("active") : speakBtn.classList.add("active");
         }, 10);
     }
 });
 
-copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(quoteText.innerText);
+// MARK Copy quote
+document.querySelector(".copy").addEventListener("click", () => {
+    navigator.clipboard.writeText(`"${quoteText.innerText}" by ${authorName.innerText}`);
 });
 
-twitterBtn.addEventListener("click", () => {
+// MARK Tweet quote
+document.querySelector(".twitter").addEventListener("click", () => {
     let tweetUrl = `https://twitter.com/intent/tweet?url=${quoteText.innerText}`;
     window.open(tweetUrl, "_blank");
 });
 
+// MARK Title key listener
+const quoteTitle = document.getElementById("quoteTitle");
+const titleInput = document.getElementById("title-input");
+titleInput.addEventListener("keyup", () => {
+    if (quoteTitle.innerText == "")
+        return quoteTitle.innerText = "Quote of the Day";
+    quoteTitle.innerText = titleInput.value;
+});
+
+titleInput.addEventListener("focusout", () => {
+    if (quoteTitle.innerText == "")
+        return quoteTitle.innerText = "Quote of the Day";
+});
+
+// MARK Download as Div
+// document.getElementById("download-btn").addEventListener("click", function () {
+//     var divToDownload = document.getElementById("div-to-download");
+
+//     var serializer = new XMLSerializer();
+//     var svgMarkup = serializer.serializeToString(divToDownload);
+
+//     var blob = new Blob([svgMarkup], { type: "image/svg+xml" });
+
+//     var link = document.createElement("a");
+//     link.href = URL.createObjectURL(blob);
+//     link.download = "download.svg";
+//     link.click();
+
+//     URL.revokeObjectURL(link.href);
+// });
 
 
+
+
+
+
+
+
+// MARK Config tools
+// Coloris init
 Coloris({
     el: '.coloris',
     swatches: [
@@ -62,7 +100,7 @@ Coloris({
         '#48cae4'
     ]
 });
-
+// MARK Color for bg
 Coloris.setInstance('.bg-color', {
     theme: 'polaroid',
     formatToggle: true,
@@ -71,6 +109,7 @@ Coloris.setInstance('.bg-color', {
     }
 });
 
+// MARK Color for Font
 Coloris.setInstance('.font-color', {
     theme: 'polaroid',
     formatToggle: true,
@@ -80,11 +119,12 @@ Coloris.setInstance('.font-color', {
     }
 });
 
+// MARK Color for Title
 Coloris.setInstance('.title-color', {
     theme: 'polaroid',
     formatToggle: true,
     onChange: (color) => {
-        document.getElementById("title").style.color = color;
+        document.getElementById("quoteTitle").style.color = color;
 
     }
 });

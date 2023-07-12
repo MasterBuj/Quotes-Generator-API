@@ -5,25 +5,23 @@
     <meta charset="utf-8">
     <title>Quotes Generator API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   </head>
   <link rel="stylesheet" href="assets/vendor/coloris/coloris.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <body>
 
-    <main class="flex-center">
+    <main>
 
       <section class="quote-container">
-        <div class="content" id="content">
-          <h1 class="title" id="title">Quote of the Day</h1>
-          <div class="quote-area">
-            <i class="fas fa-quote-left"></i>
+        <div class="quote-area" id="content">
+          <h1 class="title" id="quoteTitle">Quote of the Day</h1>
+          <div class="quote-text">
+            <iconify-icon icon="ri:double-quotes-l" class="dq"></iconify-icon>
             <p class="quote">Never give up because you never know if the next try is going to be the one that works.</p>
-            <i class="fas fa-quote-right"></i>
+            <iconify-icon icon="ri:double-quotes-r" class="dq"></iconify-icon>
           </div>
           <div class="author">
-            <span>__</span>
             <span class="name">Mary Kay Ash</span>
           </div>
         </div>
@@ -31,37 +29,55 @@
 
       <section class="config-cointainer">
         <div class="configTools">
-          <div class="tools-custom-quotes">
-            <ul class="tools-btn">
-              <li class="newQuote"><i class="fas fa-sync-alt"></i></li>
-              <li class="speech"><i class="fas fa-volume-up"></i></li>
-              <li class="copy"><i class="fas fa-copy"></i></li>
-              <li class="twitter"><i class="fab fa-twitter"></i></li>
-            </ul>
 
-            <div class="input-form">
-              <input type="text" id="title-input">
+          <ul class="tools-btn">
+            <li class="btn newQuote">
+              <iconify-icon icon="dashicons:image-rotate"></iconify-icon>
+            </li>
+            <li class="btn speak">
+              <iconify-icon icon="basil:volume-up-solid"></iconify-icon>
+            </li>
+            <li class="btn copy">
+              <iconify-icon icon="solar:copy-bold-duotone"></iconify-icon>
+            </li>
+            <li class="btn twitter">
+              <iconify-icon icon="basil:twitter-solid"></iconify-icon>
+            </li>
+
+          </ul>
+
+          <div class="input-form">
+            <input type="text" id="title-input" placeholder="Type your title here">
+          </div>
+
+          <div class="tools-color">
+
+            <div class="input-form circle">
+              <p>Font Color</p>
+              <input type="text" class="coloris font-color" value="#111111">
             </div>
 
-            <div class="tools-color">
-
-              <div class="input-form circle">
-                <p>Font Color</p>
-                <input type="text" class="coloris font-color" value="#111111">
-              </div>
-
-              <div class="input-form circle">
-                <p>Title Color</p>
-                <input type="text" class="coloris title-color" value="#11131e">
-              </div>
-
-              <div class="input-form circle">
-                <p>Background Color</p>
-                <input type="text" class="coloris bg-color" value="#ffffff">
-              </div>
-
+            <div class="input-form circle">
+              <p>Title Color</p>
+              <input type="text" class="coloris title-color" value="#11131e">
             </div>
 
+            <div class="input-form circle">
+              <p>Background Color</p>
+              <input type="text" class="coloris bg-color" value="#ffffff">
+            </div>
+
+          </div>
+
+          <div class="saveBtn">
+            <button class="btn saveAs" data-type="svg" title="Save quote as SVG" disabled>
+              <iconify-icon icon="basil:download-outline"></iconify-icon>
+              Save as SVG
+            </button>
+            <button class="btn saveAs" data-type="png" title="Save quote as PNG" disabled>
+              <iconify-icon icon="basil:download-outline"></iconify-icon>
+              Save as PNG
+            </button>
           </div>
 
         </div>
@@ -70,6 +86,9 @@
     </main>
 
     <script src="assets/vendor/coloris/coloris.min.js"></script>
+    <script src="assets/vendor/iconify/1.0.7_iconify-icon.min.js"></script>
+    <script src="assets/vendor/filesaver/2.0.5_FileSaver.min.js"></script>
+    <script src="assets/vendor/html2canvas/html2canvas.min.js"></script>
     <script src="assets/js/script.js"></script>
 
   </body>

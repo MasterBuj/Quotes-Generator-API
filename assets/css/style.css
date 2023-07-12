@@ -6,11 +6,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
 
 
-.flex-center {
+main {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -44,7 +45,7 @@ section h1 {
   justify-content: center;
 }
 
-.content {
+.quote-area {
   min-width: 600px;
   max-width: 700px;
   margin: 35px 0;
@@ -53,35 +54,34 @@ section h1 {
   padding: 30px 40px;
 }
 
-.content h1 {
+.quote-area h1 {
   margin-bottom: 20px;
 }
 
-.content .quote-area {
+.quote-area .quote-text {
   display: flex;
   justify-content: center;
 }
 
-.quote-area i {
-  font-size: 15px;
+.quote-text iconify-icon {
+  font-size: 25px;
 }
 
-.quote-area i:first-child {
+.quote-text dq:first-child {
   margin: 3px 10px 0 0;
 }
 
-.quote-area i:last-child {
+.quote-text .dq:last-child {
   display: flex;
-  margin: 0 0 3px 10px;
   align-items: flex-end;
 }
 
-.quote-area .quote {
+.quote-text .quote {
   font-size: 22px;
   text-align: center;
 }
 
-.content .author {
+.quote-area .author {
   display: flex;
   font-size: 18px;
   margin-top: 30px;
@@ -95,9 +95,17 @@ section h1 {
 }
 
 
+.author .name::before {
+  content: "--";
+  margin: 10px;
+}
+
+.author .name::after {
+  content: "--";
+  margin: 10px;
+}
 
 /* MARK config-cointainer */
-
 .config-cointainer {
   display: flex;
   justify-content: center;
@@ -105,22 +113,67 @@ section h1 {
   max-height: 50vh;
   min-height: 40vh;
   border-radius: 100px 100px 0 0;
-  padding-top: 80px;
 }
-
 
 .configTools {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.configTools .tools-btn,
+.configTools .saveBtn {
+  display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.tools-custom-quotes {
+.btn {
+  margin: 10px 20px;
+  height: 47px;
+  width: 47px;
   display: flex;
-  flex-direction: column;
+  cursor: pointer;
+  color: #5372F0;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #5372F0;
+  font-size: 1.5em;
 }
 
+.btn:is(:hover, .active) {
+  color: #fff;
+  background: #5372F0;
+}
+
+
+.tools-btn .newQuote {
+  background: #5372F0;
+  color: #fff;
+}
+
+.tools-btn .newQuote.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.tools-btn.speak.active {
+  pointer-events: none;
+}
+
+
+/* MARK Title tool */
+.configTools #title-input {
+  width: 500px;
+  height: 40px;
+  border-radius: 15px;
+}
+
+
+/* MARK color tools */
 .input-form {
   margin: 10px;
 }
@@ -164,49 +217,15 @@ section h1 {
   box-sizing: border-box;
 }
 
-.tools-custom-quotes #title-input {
-  width: 500px;
-  height: 40px;
-  border-radius: 15px;
+/* MARK Download Btn */
+.saveBtn button {
+  width: 145px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: not-allowed;
 }
 
-.config-cointainer ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.config-cointainer ul li {
-  margin: 10px 20px;
-  height: 47px;
-  width: 47px;
-  display: flex;
-  cursor: pointer;
-  color: #5372F0;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #5372F0;
-  transition: all 0.3s ease;
-}
-
-.tools-btn .newQuote {
-  background: #5372F0;
-  color: #fff;
-}
-
-ul li:is(:hover, .active) {
-  color: #fff;
-  background: #5372F0;
-}
-
-ul .speech.active {
-  pointer-events: none;
-}
-
-
-.tools-btn .newQuote.loading {
-  opacity: 0.7;
-  pointer-events: none;
+.saveBtn iconify-icon {
+  font-size: 1.5em;
+  margin-right: 0.1em;
 }
