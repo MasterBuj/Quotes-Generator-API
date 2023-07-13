@@ -27,7 +27,6 @@ function fetchQuote() {
             fetch("https://api.quotable.io/search/authors?query=" + authorNameInfo)
                 .then(response => response.json())
                 .then(authorInfo => {
-                    console.log(authorInfo)
                     document.getElementById("info-name").innerText = authorInfo.results[0].name;
                     document.getElementById("info-desc").innerText = authorInfo.results[0].description;
                     document.querySelector("#info-link > a").setAttribute("href", authorInfo.results[0].link);

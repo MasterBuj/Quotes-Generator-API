@@ -141,8 +141,15 @@ section h1 {
 .configTools {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  width: 100vw;
+  justify-content: space-between;
+}
+
+@media (max-width: 992px) {
+  .configTools {
+    align-items: center;
+  }
 }
 
 .configTools .tools-btn,
@@ -245,7 +252,7 @@ section h1 {
 @media (max-width: 992px) {
 
   .configTools {
-    justify-content: flex-start;
+    width: auto;
   }
 
   .configTools #title-input {
@@ -254,6 +261,7 @@ section h1 {
 
   .tools-color {
     flex-direction: column;
+    align-items: center;
   }
 
   .input-form .coloris {
@@ -273,11 +281,8 @@ section h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 50px;
-  width: 200px;
-  padding: 10px;
-  border-radius: 15px;
-  background: #11131e0a;
+  width: 50%;
+  align-items: center;
 }
 
 @media (max-width: 992px) {
@@ -286,6 +291,15 @@ section h1 {
     margin: 10px 0;
   }
 }
+
+.info-details {
+  padding: 10px;
+  border-radius: 15px;
+  width: 250px;
+  background: #11131e0a;
+  margin: 0;
+}
+
 
 .info-container h1 {
   font-size: 1.5em;

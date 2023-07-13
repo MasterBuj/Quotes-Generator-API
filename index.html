@@ -32,64 +32,65 @@
 
       <section class="config-container">
         <div class="configTools">
+          <div>
+            <ul class="tools-btn">
+              <li class="btn newQuote">
+                <iconify-icon icon="dashicons:image-rotate"></iconify-icon>
+              </li>
+              <li class="btn speak">
+                <iconify-icon icon="basil:volume-up-solid"></iconify-icon>
+              </li>
+              <li class="btn copy">
+                <iconify-icon icon="solar:copy-bold-duotone"></iconify-icon>
+              </li>
+              <li class="btn download">
+                <iconify-icon icon="basil:download-outline"></iconify-icon>
+              </li>
+            </ul>
+            <div class="input-form">
+              <input type="text" id="title-input" placeholder="Type your title here">
+            </div>
 
-          <ul class="tools-btn">
-            <li class="btn newQuote">
-              <iconify-icon icon="dashicons:image-rotate"></iconify-icon>
-            </li>
-            <li class="btn speak">
-              <iconify-icon icon="basil:volume-up-solid"></iconify-icon>
-            </li>
-            <li class="btn copy">
-              <iconify-icon icon="solar:copy-bold-duotone"></iconify-icon>
-            </li>
-            <li class="btn download">
-              <iconify-icon icon="basil:download-outline"></iconify-icon>
-            </li>
+            <div class="tools-color">
 
-          </ul>
+              <div class="input-form circle">
+                <p>Font Color</p>
+                <input type="text" class="coloris font-color" value="#111111">
+              </div>
 
-          <div class="input-form">
-            <input type="text" id="title-input" placeholder="Type your title here">
+              <div class="input-form circle">
+                <p>Title Color</p>
+                <input type="text" class="coloris title-color" value="#11131e">
+              </div>
+
+              <div class="input-form circle">
+                <p>Background Color</p>
+                <input type="text" class="coloris bg-color" value="#ffffff">
+              </div>
+
+            </div>
+
           </div>
-
-          <div class="tools-color">
-
-            <div class="input-form circle">
-              <p>Font Color</p>
-              <input type="text" class="coloris font-color" value="#111111">
-            </div>
-
-            <div class="input-form circle">
-              <p>Title Color</p>
-              <input type="text" class="coloris title-color" value="#11131e">
-            </div>
-
-            <div class="input-form circle">
-              <p>Background Color</p>
-              <input type="text" class="coloris bg-color" value="#ffffff">
-            </div>
-
-          </div>
-
         </div>
 
         <div class="info-container">
-          <h1>Author Info</h1>
-          <div class="info">
-            <p>Name:</p>
-            <p id="info-name"></p>
-          </div>
+          <div class="info-details">
+            <h1>Author Info</h1>
+            <div class="info">
+              <p>Name:</p>
+              <p id="info-name"></p>
+            </div>
 
-          <div class="info">
-            <p>Description:</p>
-            <p id="info-desc"></p>
-          </div>
+            <div class="info">
+              <p>Description:</p>
+              <p id="info-desc"></p>
+            </div>
 
-          <div class="info">
-            <p>Link:</p>
-            <p id="info-link"><a href="#" target="_blank"><iconify-icon
-                  icon="flat-color-icons:wikipedia"></iconify-icon></a></p>
+            <div class="info">
+              <p>Link:</p>
+              <p id="info-link"><a href="#" target="_blank"><iconify-icon
+                    icon="flat-color-icons:wikipedia"></iconify-icon></a></p>
+            </div>
           </div>
         </div>
       </section>
