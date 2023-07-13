@@ -1,48 +1,93 @@
 // MARK Global
 const quoteText = document.querySelector(".quote"),
+    authorName = document.querySelector(".author .name"),
     quoteBtn = document.querySelector(".newQuote"),
     quoteBtnInner = document.querySelector(".newQuote > iconify-icon"),
-    authorName = document.querySelector(".author .name");
+    quoteArea = document.getElementById("quote-area"),
+    quote = `"${quoteText.innerText}" by ${authorName.innerText}`;
 
 // MARK Fetch quotes
-quoteBtn.addEventListener("click", () => {
+
+window.addEventListener("load", () => {
+    fetchQuote();
+});
+
+quoteBtn.addEventListener("click", fetchQuote);
+
+function fetchQuote() {
     quoteBtn.classList.add("loading");
     quoteBtnInner.removeAttribute("icon")
     quoteBtnInner.setAttribute("icon", "eos-icons:arrow-rotate")
-    fetch("http://api.quotable.io/random")
+    fetch("http://api.quotable.io/quotes/random?maxLength=115")
         .then(response => response.json())
         .then(result => {
-            quoteText.innerText = result.content;
-            authorName.innerText = result.author;
+            quoteText.innerText = result[0].content;
+            authorName.innerText = result[0].author;
+            const authorNameInfo = authorName.innerText.replace(/\s/g, "-");
+            fetch("http://api.quotable.io/search/authors?query=" + authorNameInfo)
+                .then(response => response.json())
+                .then(authorInfo => {
+                    console.log(authorInfo)
+                    document.getElementById("info-name").innerText = authorInfo.results[0].name;
+                    document.getElementById("info-desc").innerText = authorInfo.results[0].description;
+                    document.querySelector("#info-link > a").setAttribute("href", authorInfo.results[0].link);
+                })
+
             quoteBtn.classList.remove("loading");
             quoteBtnInner.removeAttribute("icon")
             quoteBtnInner.setAttribute("icon", "dashicons:image-rotate")
         })
-});
+};
+
+function fetchAuthor(params) {
+
+}
+
 
 // MARK Speak quote
 const synth = speechSynthesis,
-    speakBtn = document.querySelector(".speak");
-speakBtn.addEventListener("click", () => {
+    speakQuoteBtn = document.querySelector(".speak");
+
+speakQuoteBtn.addEventListener("click", () => {
+    let voices = window.speechSynthesis.getVoices();
+
+    if (synth.speaking)
+        return synth.cancel();
+
+    if (!"speechSynthesis" in window || voices.length == 0)
+        return alert("Sorry, your device or browser doesn't support text to speech!");
+
+
     if (!quoteBtn.classList.contains("loading")) {
         let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
         synth.speak(utterance);
+
         setInterval(() => {
-            !synth.speaking ? speakBtn.classList.remove("active") : speakBtn.classList.add("active");
+            !synth.speaking ? speakQuoteBtn.classList.remove("active") : speakQuoteBtn.classList.add("active");
         }, 10);
+
     }
+
 });
 
 // MARK Copy quote
 document.querySelector(".copy").addEventListener("click", () => {
-    navigator.clipboard.writeText(`"${quoteText.innerText}" by ${authorName.innerText}`);
+    var hiddenClipboard = document.getElementById("_hiddenClipboard_");
+    if (!hiddenClipboard) {
+        var textarea = document.createElement("textarea");
+        textarea.style.position = "absolute";
+        textarea.style.top = "-9999px";
+        textarea.id = "_hiddenClipboard_";
+        textarea.readOnly = true;
+        textarea.value = quote;
+        document.body.appendChild(textarea);
+        hiddenClipboard = document.getElementById("_hiddenClipboard_");
+    }
+    hiddenClipboard.select();
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
 });
 
-// MARK Tweet quote
-document.querySelector(".twitter").addEventListener("click", () => {
-    let tweetUrl = `https://twitter.com/intent/tweet?url=${quoteText.innerText}`;
-    window.open(tweetUrl, "_blank");
-});
 
 // MARK Title key listener
 const quoteTitle = document.getElementById("quoteTitle");
@@ -59,28 +104,16 @@ titleInput.addEventListener("focusout", () => {
 });
 
 // MARK Download as Div
-// document.getElementById("download-btn").addEventListener("click", function () {
-//     var divToDownload = document.getElementById("div-to-download");
+document.querySelector(".download").addEventListener("click", function () {
+    html2canvas(quoteArea, {
+        scale: 15,
+        useCORS: true,
+        backgroundColor: null
+    }).then(canvas => {
+        canvas.toBlob(blob => saveAs(blob, `quote by ${authorName.innerText}`));
+    });
 
-//     var serializer = new XMLSerializer();
-//     var svgMarkup = serializer.serializeToString(divToDownload);
-
-//     var blob = new Blob([svgMarkup], { type: "image/svg+xml" });
-
-//     var link = document.createElement("a");
-//     link.href = URL.createObjectURL(blob);
-//     link.download = "download.svg";
-//     link.click();
-
-//     URL.revokeObjectURL(link.href);
-// });
-
-
-
-
-
-
-
+});
 
 // MARK Config tools
 // Coloris init
@@ -105,7 +138,7 @@ Coloris.setInstance('.bg-color', {
     theme: 'polaroid',
     formatToggle: true,
     onChange: (color) => {
-        document.getElementById("content").style.background = color;
+        document.getElementById("quote-area").style.background = color;
     }
 });
 
@@ -114,7 +147,7 @@ Coloris.setInstance('.font-color', {
     theme: 'polaroid',
     formatToggle: true,
     onChange: (color) => {
-        document.getElementById("content").style.color = color;
+        document.getElementById("quote-area").style.color = color;
 
     }
 });

@@ -14,20 +14,22 @@
     <main>
 
       <section class="quote-container">
-        <div class="quote-area" id="content">
+        <div class="quote-area" id="quote-area">
           <h1 class="title" id="quoteTitle">Quote of the Day</h1>
           <div class="quote-text">
             <iconify-icon icon="ri:double-quotes-l" class="dq"></iconify-icon>
-            <p class="quote">Never give up because you never know if the next try is going to be the one that works.</p>
+            <p class="quote">
+              <iconify-icon icon="svg-spinners:3-dots-rotate"></iconify-icon>
+            </p>
             <iconify-icon icon="ri:double-quotes-r" class="dq"></iconify-icon>
           </div>
           <div class="author">
-            <span class="name">Mary Kay Ash</span>
+            <span class="name">Laoding...</span>
           </div>
         </div>
       </section>
 
-      <section class="config-cointainer">
+      <section class="config-container">
         <div class="configTools">
 
           <ul class="tools-btn">
@@ -40,8 +42,8 @@
             <li class="btn copy">
               <iconify-icon icon="solar:copy-bold-duotone"></iconify-icon>
             </li>
-            <li class="btn twitter">
-              <iconify-icon icon="basil:twitter-solid"></iconify-icon>
+            <li class="btn download">
+              <iconify-icon icon="basil:download-outline"></iconify-icon>
             </li>
 
           </ul>
@@ -69,19 +71,29 @@
 
           </div>
 
-          <div class="saveBtn">
-            <button class="btn saveAs" data-type="svg" title="Save quote as SVG" disabled>
-              <iconify-icon icon="basil:download-outline"></iconify-icon>
-              Save as SVG
-            </button>
-            <button class="btn saveAs" data-type="png" title="Save quote as PNG" disabled>
-              <iconify-icon icon="basil:download-outline"></iconify-icon>
-              Save as PNG
-            </button>
+        </div>
+
+        <div class="info-container">
+          <h1>Author Info</h1>
+          <div class="info">
+            <p>Name:</p>
+            <p id="info-name"></p>
           </div>
 
+          <div class="info">
+            <p>Description:</p>
+            <p id="info-desc"></p>
+          </div>
+
+          <div class="info">
+            <p>Link:</p>
+            <p id="info-link"><a href="#" target="_blank"><iconify-icon
+                  icon="flat-color-icons:wikipedia"></iconify-icon></a></p>
+          </div>
         </div>
       </section>
+
+
 
     </main>
 

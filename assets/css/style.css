@@ -9,6 +9,9 @@
   transition: all 0.3s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 
 main {
@@ -17,19 +20,18 @@ main {
   height: 100vh;
   background: #11131e;
   align-items: center;
-  justify-content: flex-end;
-  overflow: hidden;
+  justify-content: space-between;
+  overflow: scroll;
 }
 
 section {
   background: #fff;
   padding: 30px;
-  margin: 10px;
   color: #202842;
 }
 
 section h1 {
-  font-size: 35px;
+  font-size: calc(1.5rem + 1vw);
   font-weight: 600;
   text-align: center;
 }
@@ -46,12 +48,12 @@ section h1 {
 }
 
 .quote-area {
-  min-width: 600px;
-  max-width: 700px;
+  width: 100vh;
   margin: 35px 0;
   border-radius: 15px;
   background: #fff;
   padding: 30px 40px;
+
 }
 
 .quote-area h1 {
@@ -77,7 +79,7 @@ section h1 {
 }
 
 .quote-text .quote {
-  font-size: 22px;
+  font-size: calc(1em + 1vw);
   text-align: center;
 }
 
@@ -94,7 +96,6 @@ section h1 {
   font-family: monospace;
 }
 
-
 .author .name::before {
   content: "--";
   margin: 10px;
@@ -105,14 +106,31 @@ section h1 {
   margin: 10px;
 }
 
-/* MARK config-cointainer */
-.config-cointainer {
+@media (max-width: 992px) {
+  .quote-area {
+    padding: 20px 15px;
+  }
+
+  .quote-area .author {
+    justify-content: center;
+  }
+}
+
+/* MARK config-container */
+.config-container {
   display: flex;
   justify-content: center;
   width: 100vw;
-  max-height: 50vh;
-  min-height: 40vh;
-  border-radius: 100px 100px 0 0;
+  height: 100vh;
+  border-radius: 10vw 10vw 0 0;
+}
+
+@media (max-width: 992px) {
+  .config-container {
+    flex-direction: column;
+
+  }
+
 }
 
 .configTools {
@@ -217,15 +235,65 @@ section h1 {
   box-sizing: border-box;
 }
 
-/* MARK Download Btn */
-.saveBtn button {
-  width: 145px;
-  font-size: 1em;
-  border-radius: 5px;
-  cursor: not-allowed;
+
+
+@media (max-width: 992px) {
+
+  .configTools {
+    justify-content: flex-start;
+  }
+
+  .configTools #title-input {
+    width: 90vw;
+  }
+
+  .tools-color {
+    flex-direction: column;
+  }
+
+  .input-form .coloris {
+    width: 85vw !important;
+  }
+
+  .circle p {
+    font-size: 0.8em;
+  }
 }
 
-.saveBtn iconify-icon {
+
+/* MARK Author info */
+
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 50px;
+  width: 200px;
+  padding: 10px;
+  border-radius: 15px;
+  background: #11131e0a;
+}
+
+@media (max-width: 992px) {
+  .info-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+.info-container h1 {
   font-size: 1.5em;
-  margin-right: 0.1em;
+}
+
+.info {
+  margin: 10px 0;
+}
+
+.info p:first-child {
+  font-weight: bold;
+}
+
+#info-link {
+  font-size: 2em;
 }
