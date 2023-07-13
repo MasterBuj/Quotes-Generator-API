@@ -18,13 +18,13 @@ function fetchQuote() {
     quoteBtn.classList.add("loading");
     quoteBtnInner.removeAttribute("icon")
     quoteBtnInner.setAttribute("icon", "eos-icons:arrow-rotate")
-    fetch("http://api.quotable.io/quotes/random?maxLength=115")
+    fetch("https://api.quotable.io/quotes/random?maxLength=115")
         .then(response => response.json())
         .then(result => {
             quoteText.innerText = result[0].content;
             authorName.innerText = result[0].author;
             const authorNameInfo = authorName.innerText.replace(/\s/g, "-");
-            fetch("http://api.quotable.io/search/authors?query=" + authorNameInfo)
+            fetch("https://api.quotable.io/search/authors?query=" + authorNameInfo)
                 .then(response => response.json())
                 .then(authorInfo => {
                     console.log(authorInfo)
